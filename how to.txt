@@ -1,0 +1,34 @@
+Before do anything please install Busybox and root your device.
+
+adb devices >> lists device >> device
+adb shell >> getprop >> /sdcard/getprop.txt
+
+
+Make a directory for keeping all files you're pulling like 8A-DUAL
+mkdir 8adual >> cd 8adual
+adb shell >> cd /sdcard/ >> cd /proc/
+>>su
+>>cat kmsg
+>>ls config.gz [it's not always be ther in everydevice so don't bother if you don't have.]
+>>zcat connfig.gz
+>>zcat config.gz | tee /sdcard/kernelConfig.txt
+>>cat ./cmdline | tee /sdcard/kernelCmdline.txt
+>>check for mtd file "cat mtd"
+>>cat ./partitions | tee /sdcard/partitions.txt
+>>cd /cache/ >> cd /recovery/ >> cat last_log | tee /sdcard/last_log.txt
+>>cd /dev/ >> cd /block/ >> cd /bootdevice/ >> cd /by-name/ >> ls -la | tee /sdcard/byName.txt
+>>fdisk -l /dev/block/mmcblk0 | tee /sdcard/fdisk.txt
+>>here fstab.qcom is file system table
+>>cp fstab.qcom /sdcard/
+>>ls /sdcard/
+>>dd if=/dev/clock/bootdevice/by-name/boot of=/sdcard/boot.img
+>>now go back all way like adb shell state
+>>blockdev --getsize64 /dev/block/bootdevice/by-name/boot | tee /sdcard/bootsizebytes.txt
+>>blockdev --getsize64 /dev/block/bootdevice/by-name/recovery | tee /sdcard/recoverysizebytes.txt
+>>blockdev --getsize64 /dev/block/bootdevice/by-name/userdata | tee /sdcard/userdatasizebytes.txt
+>>blockdev --getsize64 /dev/block/bootdevice/by-name/system | tee /sdcard/systemsizebytes.txt
+>>exit
+>>cd 8adual >> adb pull /sdcard/boot.img
+>>mkdir etc
+>>mkdir system
+>>cd system/ >> adb pull /system/etc ./
