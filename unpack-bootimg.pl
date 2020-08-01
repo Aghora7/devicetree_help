@@ -28,9 +28,10 @@ while ($bootimg =~ m/\x00\x00\x00\x00\x1F\x8B/g) {
 
 if ($numfiles == 0) {
 	die "Could not find any embedded ramdisk images. Are you sure this is a full boot image?\n";
-} elsif ($numfiles > 1) {
-	die "Found a secondary file after the ramdisk image.  According to the spec (mkbootimg.h) this file can exist, but this script is not designed to deal with this scenario.\n";
 }
+# elsif ($numfiles > 1) {
+#	die "Found a secondary file after the ramdisk image.  According to the spec (mkbootimg.h) this file can exist, but this script is not designed to deal with this scenario.\n";
+#}
 
 $bootimg =~ /(.*\x00\x00\x00\x00)(\x1F\x8B.*)/s;
 
