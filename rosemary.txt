@@ -1,0 +1,11 @@
+Kernel size 10212749
+Kernel address 0x40080000
+Ramdisk size 19945715
+Ramdisk address 0x47c80000
+Secondary size 0
+Secondary address 0x0
+Kernel tags address 0x4bc80000
+Flash page size 2048
+Board name is ""
+Command line "bootopt=64S3,32N2,64N2"
+
